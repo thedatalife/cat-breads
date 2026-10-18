@@ -1,0 +1,14 @@
+{
+  "id": "cat-breads-mcp",
+  "url": "http://localhost:8765/?demo=voices",
+  "viewport": { "width": 1720, "height": 808 },
+  "deviceScaleFactor": 1,
+  "launch": { "channel": "chromium", "args": ["--use-angle=metal", "--ignore-gpu-blocklist"] },
+  "steps": [
+    { "action": "startVideo" },
+    { "action": "goto", "url": "http://localhost:8765/?demo=voices&at=LuckyCat:3.55,BumbleCat:4.95,Explorer:6.35,DevilCat:7.75,Unimeow:8.75,Mascot:9.55" },
+    { "action": "waitForFunction", "expression": "window.lounge && window.lounge.demo && window.lounge.demo.done", "timeoutMs": 90000 },
+    { "action": "evaluate", "expression": "window.lounge.demo.log", "name": "voices-log" },
+    { "action": "stopVideo", "name": "voices" }
+  ]
+}

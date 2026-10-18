@@ -1,0 +1,55 @@
+{
+  "id": "cat-breads-mcp",
+  "url": "http://localhost:8765/?demo=voices",
+  "assets": [
+    {
+      "name": "voices",
+      "media": "captures/cat-breads-mcp/voices.webm",
+      "type": "video"
+    }
+  ],
+  "results": {
+    "voices-log": [
+      {
+        "type": "marker",
+        "t": 0
+      },
+      {
+        "type": "meow",
+        "name": "LuckyCat",
+        "move": "hop",
+        "t": 3.555
+      },
+      {
+        "type": "meow",
+        "name": "BumbleCat",
+        "move": "wiggle",
+        "t": 4.955
+      },
+      {
+        "type": "meow",
+        "name": "Explorer",
+        "move": "surprise",
+        "t": 6.355
+      },
+      {
+        "type": "meow",
+        "name": "DevilCat",
+        "move": "shake",
+        "t": 7.755
+      },
+      {
+        "type": "meow",
+        "name": "Unimeow",
+        "move": "dance",
+        "t": 8.755
+      },
+      {
+        "type": "meow",
+        "name": "Mascot",
+        "move": "doubleHop",
+        "t": 9.555
+      }
+    ]
+  }
+}

@@ -1,0 +1,236 @@
+{
+ "id": "cat-breads-mcp",
+ "title": "Cat Breads: voiced through the Comfy Cloud MCP",
+ "theme": "dark",
+ "assetDir": ".",
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "music": "audio/cat-breads-mcp/ambient.mp3",
+ "musicStartSec": 34.7,
+ "musicVolume": 0.6,
+ "musicDuck": 0.25,
+ "musicFadeSec": 2.0,
+ "scenes": [
+  {
+   "kind": "intro",
+   "title": "Cat Breads",
+   "subtitle": "An SDF experiment that became Lane's playground. Voiced through the Comfy Cloud MCP.",
+   "mascot": true,
+   "durationSec": 3
+  },
+  {
+   "kind": "capture",
+   "media": "captures/cat-breads-mcp/sdf_gallery.png",
+   "mediaType": "image",
+   "surface": "none",
+   "caption": "This started as an experiment: modelling with signed distance fields in Blender.",
+   "camera": {
+    "fromScale": 1.0,
+    "toScale": 1.1,
+    "focusX": 0.5,
+    "focusY": 0.55
+   },
+   "durationSec": 4.93
+  },
+  {
+   "kind": "capture",
+   "media": "captures/cat-breads-mcp/cards_photo.jpg",
+   "mediaType": "image",
+   "surface": "none",
+   "caption": "Then my daughter Lane drew twenty-three cats on index cards, and the experiment had its subject.",
+   "camera": {
+    "fromScale": 1.0,
+    "toScale": 1.12,
+    "focusX": 0.7,
+    "focusY": 0.72
+   },
+   "durationSec": 6.01
+  },
+  {
+   "kind": "capture",
+   "media": "captures/cat-breads-mcp/cards_render.jpg",
+   "mediaType": "image",
+   "surface": "none",
+   "caption": "With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off.",
+   "camera": {
+    "fromScale": 1.06,
+    "toScale": 1.0,
+    "focusX": 0.7,
+    "focusY": 0.72
+   },
+   "durationSec": 5.61
+  },
+  {
+   "kind": "capture",
+   "media": "captures/cat-breads-mcp/lounge.mp4",
+   "mediaType": "video",
+   "mediaStartSec": 2.283,
+   "surface": "web",
+   "url": "cat-breads-lounge.vercel.app",
+   "caption": "It grew into a playground for her iPad. Finished, and completely silent.",
+   "durationSec": 6.15
+  },
+  {
+   "kind": "terminal",
+   "title": "claude · ~/Code/blndr",
+   "badge": "Claude Code · Comfy Cloud MCP",
+   "lines": [
+    {
+     "role": "user",
+     "atSec": 0.3,
+     "text": "The lounge needs sound. Give every cat a 1.5 s voice that fits its card, and a loop of lounge music, through Comfy Cloud."
+    },
+    {
+     "role": "tool",
+     "atSec": 3.2,
+     "text": "comfyui-cloud · partner_generate  type \"audio\" · model \"elevenlabs/sound-generation\" · prompt \"a small brass bell jingling twice, cute, close\" · duration 1.5"
+    },
+    {
+     "role": "result",
+     "atSec": 4.4,
+     "text": "submitted → completed in 8 s · 4dd389b5 · saved to the asset library with its graph"
+    },
+    {
+     "role": "tool",
+     "atSec": 5.3,
+     "text": "comfyui-cloud · partner_generate  prompt \"a fat bumblebee buzzing past, cartoonish\" · duration 1.5"
+    },
+    {
+     "role": "tool",
+     "atSec": 6.1,
+     "text": "comfyui-cloud · partner_generate  prompt \"a bubbly underwater echo, playful\" · duration 1.5"
+    },
+    {
+     "role": "note",
+     "atSec": 6.9,
+     "text": "… 20 more voices, one call each"
+    },
+    {
+     "role": "tool",
+     "atSec": 7.8,
+     "text": "comfyui-cloud · run_template  audio_ace_step_1_5_checkpoint · \"warm lo-fi lounge, soft keys, brushed drums\" · 60 s"
+    },
+    {
+     "role": "result",
+     "atSec": 9.0,
+     "text": "completed · ambient.flac · 60 s loop"
+    },
+    {
+     "role": "note",
+     "atSec": 9.9,
+     "text": "⏺ bash  ffmpeg … silenceremove, loudnorm → web/audio/<Name>.mp3 ×23, ambient.mp3"
+    }
+   ],
+   "caption": "So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and ACE-Step for the music, without leaving the editor.",
+   "nodey": {
+    "point": {
+     "x": 0.077,
+     "y": 0.288
+    }
+   },
+   "audioCues": [
+    {
+     "src": "audio/cat-breads-mcp/LuckyCat.mp3",
+     "atSec": 4.45,
+     "volume": 0.6
+    }
+   ],
+   "durationSec": 12.5
+  },
+  {
+   "kind": "capture",
+   "media": "captures/cat-breads-mcp/voices.mp4",
+   "mediaType": "video",
+   "mediaStartSec": 1.883,
+   "surface": "web",
+   "url": "cat-breads-lounge.vercel.app",
+   "caption": "Tap a cat, and it answers.",
+   "audioCues": [
+    {
+     "src": "audio/cat-breads-mcp/LuckyCat.mp3",
+     "atSec": 3.405,
+     "volume": 0.9
+    },
+    {
+     "src": "audio/cat-breads-mcp/BumbleCat.mp3",
+     "atSec": 4.805,
+     "volume": 0.9
+    },
+    {
+     "src": "audio/cat-breads-mcp/Explorer.mp3",
+     "atSec": 6.205,
+     "volume": 0.9
+    },
+    {
+     "src": "audio/cat-breads-mcp/DevilCat.mp3",
+     "atSec": 7.605,
+     "volume": 0.9
+    },
+    {
+     "src": "audio/cat-breads-mcp/Unimeow.mp3",
+     "atSec": 8.605,
+     "volume": 0.9
+    },
+    {
+     "src": "audio/cat-breads-mcp/Mascot.mp3",
+     "atSec": 9.405,
+     "volume": 0.9
+    }
+   ],
+   "durationSec": 11
+  },
+  {
+   "kind": "outro",
+   "headline": "Built with Claude Code.\nVoiced through the Comfy Cloud MCP.",
+   "cta": "Try the Comfy Cloud MCP",
+   "url": "cloud.comfy.org  ·  for Lane",
+   "mascot": true,
+   "durationSec": 5.5
+  }
+ ],
+ "narration": [
+  {
+   "sceneIndex": 1,
+   "text": "This started as an experiment: modelling with signed distance fields in Blender.",
+   "audio": "audio/cat-breads-mcp/L01.mp3",
+   "durationSec": 3.63
+  },
+  {
+   "sceneIndex": 2,
+   "text": "Then my daughter Lane drew twenty-three cats on index cards, and the experiment had its subject.",
+   "audio": "audio/cat-breads-mcp/L02.mp3",
+   "durationSec": 4.71
+  },
+  {
+   "sceneIndex": 3,
+   "text": "With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off.",
+   "audio": "audio/cat-breads-mcp/L03.mp3",
+   "durationSec": 4.31
+  },
+  {
+   "sceneIndex": 4,
+   "text": "It grew into a playground for her iPad. Finished, and completely silent.",
+   "audio": "audio/cat-breads-mcp/L04.mp3",
+   "durationSec": 4.85
+  },
+  {
+   "sceneIndex": 5,
+   "text": "So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and ACE-Step for the music, without leaving the editor.",
+   "audio": "audio/cat-breads-mcp/L05.mp3",
+   "durationSec": 7.82
+  },
+  {
+   "sceneIndex": 6,
+   "text": "Tap a cat, and it answers.",
+   "audio": "audio/cat-breads-mcp/L06.mp3",
+   "durationSec": 1.9
+  },
+  {
+   "sceneIndex": 7,
+   "text": "Even this narration is my voice, cloned through the MCP.",
+   "audio": "audio/cat-breads-mcp/L07.mp3",
+   "durationSec": 3.53
+  }
+ ]
+}

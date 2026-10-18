@@ -342,3 +342,25 @@ winner is drawn weighted by size (the bigger cat usually wins), turns back to th
 as usual; the loser sulks for a second with its head down and ears back, then trudges home slowly
 with small hops before settling. Everything is driven by the same trip state machine, so a cat
 pressed mid-fight ignores the press and a third treat dropped meanwhile waits for a free cat.
+
+## Demo video
+
+`renders/demo/cat-breads-mcp.mp4` is a ~55 s demo of this project for the Comfy Cloud MCP: the SDF experiment, Lane's cards,
+the silent lounge, the Claude Code session that gave every cat a voice through the MCP, and the cats answering. It is
+rendered by the Comfy Demo Studio (`~/Code/remotion`, Remotion + Playwright) from `demo/spec.json`; the narration is Miles's
+cloned voice, generated on Comfy Cloud (see `demo/narration.md`). To rebuild it:
+
+```bash
+python3 -m http.server 8765 --directory web                     # the lounge, for the captures
+cd ~/Code/remotion && node_modules/.bin/tsx capture/capture.ts "$(cat ~/Code/blndr/demo/capture-lounge.json)"
+node_modules/.bin/tsx capture/capture.ts "$(cat ~/Code/blndr/demo/capture-voices.json)"
+cp public/captures/cat-breads-mcp/manifest.json ~/Code/blndr/demo/voices-manifest.json
+cd ~/Code/blndr && demo/crops.sh && python3 demo/trim_takes.py && python3 demo/build_spec.py
+cd ~/Code/remotion && node_modules/.bin/tsx scripts/render-spec.ts ~/Code/blndr/demo/spec.json ~/Code/blndr/renders/demo
+```
+
+The lounge has a demo mode for the capture browser: `?demo=lounge` dollies in on the room and `?demo=voices` presses cats on a
+schedule (`&at=LuckyCat:3.55,BumbleCat:4.95,...`, seconds after a white marker frame it flashes once every cat has loaded).
+Each press is logged against the marker in `window.lounge.demo.log`, so the silent screen recording can be synced to the
+real voices afterwards (`demo/marker.py` finds the marker in the clip). The capture runs the full Chromium with
+`--use-angle=metal`: the default headless shell renders the room at under one frame per second.
