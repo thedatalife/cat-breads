@@ -1273,6 +1273,7 @@ function frame() {
   if (window.innerWidth !== fitted.w || window.innerHeight !== fitted.h) fitCamera();
   const dt = Math.min(clock.getDelta(), 0.05), time = clock.elapsedTime;
   FX.time.value = time;
+  if (DEMO.active) demoTick();
   for (const cat of cats) if (cat.fx.uTouchAmp.value > 0) { cat.fx.uTouchT.value = time - cat.fx.t0; if (cat.fx.uTouchT.value > 2.5) cat.fx.uTouchAmp.value = 0; }
   raycaster.setFromCamera(pointer, camera);
   if (raycaster.ray.intersectPlane(lookPlane, _v)) target.copy(_v);
@@ -1307,5 +1308,59 @@ function frame() {
   camera.rotateZ(-roll); camera.position.x -= sx; camera.position.y -= sy;
   requestAnimationFrame(frame);
 }
+// ------------------------------------------------------------------ demo mode: a scripted take for the capture browser
+// `?demo=lounge` dollies in on the room; `?demo=voices` presses cats on a schedule (`&at=LuckyCat:3.4,BumbleCat:4.8,...`,
+// seconds after the marker). Once every cat is in, a white marker frame flashes (t = 0) and every event is logged
+// against it in `lounge.demo.log`, so a silent screen recording can be synced to the real sounds afterwards.
+const DEMO = { mode: new URLSearchParams(location.search).get('demo'), active: false, done: false, t0: 0, end: 0, log: [], events: [], fired: 0, marker: null, cam: null };
+const _up = new THREE.Vector3(0, 1, 0);
+function demoSchedule() {
+  const at = new URLSearchParams(location.search).get('at');
+  const def = [['LuckyCat', 3.4], ['BumbleCat', 4.8], ['Explorer', 6.2], ['DevilCat', 7.6], ['Unimeow', 8.6], ['Mascot', 9.4]];
+  const list = at ? at.split(',').map((s) => { const [n, t] = s.split(':'); return [n, parseFloat(t)]; }).filter((e) => e[0] && isFinite(e[1])) : def;
+  const moves = { LuckyCat: 'hop', BumbleCat: 'wiggle', Explorer: 'surprise', DevilCat: 'shake', Unimeow: 'dance', Mascot: 'doubleHop' };
+  return list.map(([name, t]) => ({ name, t, move: moves[name] || 'hop' })).sort((a, b) => a.t - b.t);
+}
+function demoStart() {
+  DEMO.active = true; DEMO.t0 = performance.now();
+  DEMO.marker = document.createElement('div');
+  Object.assign(DEMO.marker.style, { position: 'fixed', inset: '0', background: '#fff', zIndex: '9999', pointerEvents: 'none' });
+  document.body.appendChild(DEMO.marker);
+  DEMO.log.push({ type: 'marker', t: 0 });
+  DEMO.events = DEMO.mode === 'voices' ? demoSchedule() : [];
+  DEMO.end = DEMO.mode === 'voices' ? (DEMO.events.length ? DEMO.events[DEMO.events.length - 1].t + 2.2 : 3) : 9;
+  DEMO.cam = { off: camera.position.clone().sub(controls.target), dur: DEMO.mode === 'lounge' ? 8 : 0 };
+  if (DEMO.mode === 'voices') {                                                // a closer frame on the couch, so the hops read
+    const off = camera.position.clone().sub(controls.target);
+    controls.target.y = 2.3;
+    camera.position.copy(controls.target).add(off.setLength(off.length() * 0.55));
+    controls.update();
+  }
+}
+function demoTick() {
+  const el = (performance.now() - DEMO.t0) / 1000;
+  if (DEMO.marker && el > 0.12) { DEMO.marker.remove(); DEMO.marker = null; }
+  if (DEMO.cam.dur > 0) {                                                      // dolly in from five units back with a slight yaw, eased
+    const k = Math.min(1, el / DEMO.cam.dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+    const off = DEMO.cam.off.clone();
+    off.setLength(off.length() + 5 * (1 - e)).applyAxisAngle(_up, -0.07 + 0.1 * e);
+    camera.position.copy(controls.target).add(off);
+  }
+  while (DEMO.fired < DEMO.events.length && DEMO.events[DEMO.fired].t <= el) {
+    const ev = DEMO.events[DEMO.fired++], cat = cats.find((c) => c.name === ev.name);
+    if (!cat) continue;
+    const p = new THREE.Vector3(cat.root.position.x, cat.root.position.y + 0.8 * cat.base.s, cat.root.position.z).project(camera);
+    pointer.set(p.x, p.y);                                                     // the room turns to the cat about to speak
+    play(cat, ev.move); meow(cat);
+    DEMO.log.push({ type: 'meow', name: ev.name, move: ev.move, t: +((performance.now() - DEMO.t0) / 1000).toFixed(3) });
+  }
+  if (el >= DEMO.end) { DEMO.done = true; DEMO.active = false; }
+}
+if (DEMO.mode) {
+  muteBtn.style.display = 'none';
+  const ready = () => { if (cats.length >= names.length) setTimeout(demoStart, 1000); else setTimeout(ready, 100); };
+  ready();
+}
+
 frame();
-window.lounge = { cats, MOVES, camera, controls, AUDIO, pointer, touch, FX, thud, RIP, PULSE, SHAKE, LAMP, impact, floorRipple, petAt, toggleNight, MOOD, treat: (x, z) => dropTreat(new THREE.Vector3(x, 0, z)), TREATS, meow: (name) => { const c = cats.find((x) => x.name === name); if (c) meow(c); }, play: (name, move) => { const c = cats.find((x) => x.name === name); return c ? play(c, move) : null; } };
+window.lounge = { demo: DEMO, cats, MOVES, camera, controls, AUDIO, pointer, touch, FX, thud, RIP, PULSE, SHAKE, LAMP, impact, floorRipple, petAt, toggleNight, MOOD, treat: (x, z) => dropTreat(new THREE.Vector3(x, 0, z)), TREATS, meow: (name) => { const c = cats.find((x) => x.name === name); if (c) meow(c); }, play: (name, move) => { const c = cats.find((x) => x.name === name); return c ? play(c, move) : null; } };

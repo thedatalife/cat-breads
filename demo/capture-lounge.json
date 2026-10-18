@@ -1,0 +1,14 @@
+{
+  "id": "cat-breads-mcp",
+  "url": "http://localhost:8765/?demo=lounge",
+  "viewport": { "width": 1720, "height": 808 },
+  "deviceScaleFactor": 1,
+  "launch": { "channel": "chromium", "args": ["--use-angle=metal", "--ignore-gpu-blocklist"] },
+  "steps": [
+    { "action": "startVideo" },
+    { "action": "goto", "url": "http://localhost:8765/?demo=lounge" },
+    { "action": "waitForFunction", "expression": "window.lounge && window.lounge.demo && window.lounge.demo.done", "timeoutMs": 90000 },
+    { "action": "evaluate", "expression": "window.lounge.demo.log", "name": "lounge-log" },
+    { "action": "stopVideo", "name": "lounge" }
+  ]
+}

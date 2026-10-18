@@ -1,0 +1,51 @@
+[
+ {
+  "id": "L01",
+  "mood": "natural",
+  "max_seconds": 6.0,
+  "text": "This started as an experiment: modelling with signed distance fields in Blender."
+ },
+ {
+  "id": "L02",
+  "mood": "amused",
+  "max_seconds": 7.5,
+  "text": "Then my daughter Lane drew twenty-three cats on index cards, and the experiment had its subject."
+ },
+ {
+  "id": "L03",
+  "mood": "natural",
+  "max_seconds": 7.5,
+  "text": "With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off."
+ },
+ {
+  "id": "L04",
+  "mood": "quiet",
+  "max_seconds": 6.0,
+  "text": "It grew into a playground for her iPad. Finished, and completely silent."
+ },
+ {
+  "id": "L05",
+  "mood": "calm",
+  "max_seconds": 12.0,
+  "text": "So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and Ace Step for the music, without leaving the editor.",
+  "caption": "So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and ACE-Step for the music, without leaving the editor.",
+  "seeds": [
+   44,
+   55,
+   66
+  ],
+  "note": "'Ace Step' as two words: the hyphenated spelling made the clone pause between them"
+ },
+ {
+  "id": "L06",
+  "mood": "excited",
+  "max_seconds": 4.0,
+  "text": "Tap a cat, and it answers."
+ },
+ {
+  "id": "L07",
+  "mood": "confident",
+  "max_seconds": 5.0,
+  "text": "Even this narration is my voice, cloned through the MCP."
+ }
+]
