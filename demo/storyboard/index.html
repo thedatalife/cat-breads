@@ -1,0 +1,409 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- The storyboard Miles approved before the demo video was built (revision 2, 2026-10-17). Saved from the review page at
+     https://claude.ai/artifact/DyokRgGDAZnrqce9o6ZX7e so the record lives with the project. -->
+<title>Cat Breads Storyboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: a time ruler up top, then one row per beat (frame mock on the left, script on the right), press order, asks, gallery. */
+  :root {
+    --bg: #f0efed;          /* Comfy marketing warm white */
+    --surface: #ffffff;
+    --fg: #211927;          /* Comfy ink */
+    --muted: #6d6172;
+    --line: #ddd6dc;
+    --lime: #f2ff59;        /* comfy-yellow */
+    --lime-ink: #211927;
+    --wall: #a2553f;        /* the lounge's terracotta wall */
+    --paper: #fffaf2;       /* index card */
+    --ink: #211927;         /* the video's own ground, fixed in both themes */
+    --ink-2: #2d2335;
+    --ink-fg: #f4efe9;
+    --ink-muted: #b4a6ba;
+    --display: "Fredoka", "Avenir Next Rounded", "Nunito", system-ui, sans-serif;
+    --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #1a1420; --surface: #262030; --fg: #f1ecf3; --muted: #b2a5ba; --line: #3a3144; --lime-ink: #211927; --wall: #d9765c; --paper: #2d2634; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #1a1420; --surface: #262030; --fg: #f1ecf3; --muted: #b2a5ba; --line: #3a3144; --lime-ink: #211927; --wall: #d9765c; --paper: #2d2634; color-scheme: dark; }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.1; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(32px, 5vw, 52px); letter-spacing: -0.01em; }
+  h2 { font-size: 26px; margin-top: 56px; margin-bottom: 14px; }
+  h3 { font-size: 20px; }
+  p { margin: 0; }
+  code { font-family: var(--mono); font-size: 0.92em; }
+  .lede { max-width: 62ch; color: var(--muted); margin-top: 10px; font-size: 17px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .chip { font-family: var(--mono); font-size: 12.5px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+  .chip.lime { background: var(--lime); color: var(--lime-ink); border-color: transparent; font-weight: 500; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .mood { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--lime-ink); vertical-align: middle; }
+
+  /* ---- timeline ---- */
+  .timeline { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px 14px; overflow-x: auto; }
+  .tl-inner { min-width: 680px; }
+  .ruler { position: relative; height: 22px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .ruler span { position: absolute; transform: translateX(-50%); }
+  .lane { position: relative; height: 34px; margin-top: 6px; display: flex; align-items: center; }
+  .lane-label { position: absolute; left: 0; top: -2px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .lane-track { position: relative; width: 100%; height: 22px; margin-top: 12px; }
+  .seg { position: absolute; top: 0; height: 22px; border-radius: 6px; font-family: var(--mono); font-size: 11px; line-height: 22px; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-sizing: border-box; }
+  .seg.pic { background: var(--ink); color: var(--ink-fg); border: 1px solid var(--ink-2); }
+  .seg.pic.card { background: var(--wall); color: #fff; }
+  .seg.pic.still { background: #6a5a74; }
+  .seg.pic.term { background: #3b3146; border-color: var(--lime); }
+  .seg.vo { background: var(--lime); color: var(--lime-ink); font-weight: 500; }
+  .seg.music { background: linear-gradient(90deg, transparent 0, #7bc6a0 12%, #7bc6a0 100%); color: #10261b; }
+  .cue { position: absolute; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--wall); border: 2px solid var(--surface); transform: translateX(-50%); box-shadow: 0 0 0 1px var(--line); }
+  .cue.bell { background: #e0b43a; }
+  .tl-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .tl-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+
+  /* ---- beats ---- */
+  .beat { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: start; padding: 28px 0; border-top: 1px solid var(--line); }
+  .beat:first-of-type { border-top: 0; }
+  .beat > * { min-width: 0; }
+  .script .eyebrow { margin-bottom: 8px; }
+  .script h3 { margin-bottom: 12px; }
+  .vo-line { font-family: var(--display); font-weight: 500; font-size: 22px; line-height: 1.3; padding: 14px 18px; border-left: 4px solid var(--lime); background: var(--surface); border-radius: 0 12px 12px 0; margin-bottom: 14px; }
+  .vo-line.silent { border-left-color: var(--line); color: var(--muted); font-size: 17px; font-weight: 400; font-family: var(--body); }
+  .vo-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin: -6px 0 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .notes { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 6px 12px; font-size: 14.5px; }
+  .notes dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+  .notes dd { margin: 0; }
+
+  /* the 16:9 frame mock: the video's own dark ground with the studio's dot grid */
+  .frame { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; overflow: hidden; background-color: var(--ink);
+           background-image: radial-gradient(rgba(242,255,89,0.22) 1px, transparent 1.2px); background-size: 22px 22px; color: var(--ink-fg); box-shadow: 0 10px 30px rgba(33,25,39,0.25); }
+  .frame .ts { position: absolute; left: 10px; top: 8px; font-family: var(--mono); font-size: 11px; color: var(--ink-muted); background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 4px; }
+  .browser { position: absolute; left: 5.2%; right: 5.2%; top: 10%; bottom: 20%; border-radius: 10px; overflow: hidden; background: #15101a; border: 1px solid #3d3347; display: flex; flex-direction: column; }
+  .bar { height: 24px; flex: none; display: flex; align-items: center; gap: 6px; padding: 0 10px; background: #2a2232; font-family: var(--mono); font-size: 10px; color: var(--ink-muted); }
+  .bar i { width: 8px; height: 8px; border-radius: 50%; background: #5a4f63; display: inline-block; }
+  .bar .url { margin-left: 8px; padding: 2px 8px; background: #1b151f; border-radius: 4px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar .surf { padding: 1px 6px; border-radius: 4px; background: var(--lime); color: var(--lime-ink); font-weight: 500; }
+  .browser img { flex: 1; width: 100%; min-height: 0; object-fit: cover; object-position: var(--pos, center); display: block; }
+  .cap { position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%); max-width: 84%; background: rgba(33,25,39,0.78); border: 1px solid rgba(255,255,255,0.14); color: var(--ink-fg); font-size: 12.5px; line-height: 1.35; padding: 7px 12px; border-radius: 9px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .callout { position: absolute; width: 42px; height: 42px; border: 2px solid var(--lime); border-radius: 50%; box-shadow: 0 0 0 6px rgba(242,255,89,0.18); }
+  .callout span { position: absolute; left: -6px; top: -26px; font-family: var(--mono); font-size: 11px; color: var(--lime); white-space: nowrap; background: rgba(33,25,39,0.9); padding: 2px 7px; border-radius: 4px; }
+  .nodey { position: absolute; right: 3%; top: 3.5%; font-family: var(--mono); font-size: 10.5px; color: var(--lime); border: 1px dashed var(--lime); border-radius: 8px; padding: 4px 7px; opacity: 0.9; }
+  .title-card { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 8%; }
+  .title-card .big { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 5.2vw, 56px); line-height: 1; color: #fff; }
+  .title-card .sub { margin-top: 10px; font-size: clamp(12px, 1.6vw, 17px); color: var(--ink-muted); max-width: 34ch; }
+  .title-card .cta { margin-top: 16px; display: inline-flex; align-self: flex-start; font-family: var(--mono); font-size: 12px; padding: 5px 10px; background: var(--lime); color: var(--lime-ink); border-radius: 6px; font-weight: 500; }
+  .term { position: absolute; left: 5.2%; right: 5.2%; top: 9%; bottom: 20%; border-radius: 10px; background: #15101a; border: 1px solid #3d3347; display: flex; flex-direction: column; overflow: hidden; }
+  .term pre { margin: 0; flex: 1; padding: 10px 14px; font-family: var(--mono); font-size: clamp(8.5px, 1.05vw, 11.5px); line-height: 1.45; color: #e6dfe9; white-space: pre-wrap; overflow: hidden; }
+  .term .u { color: #fff; font-weight: 500; }
+  .term .t { color: var(--lime); }
+  .term .r { color: #9fd3b5; }
+  .term .d { color: #8a7d93; }
+  .term .cur { display: inline-block; width: 7px; height: 12px; background: var(--lime); vertical-align: -2px; }
+
+  /* ---- press order ---- */
+  .press { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 14px; }
+  .press figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+  .press img { width: 100%; border-radius: 8px; display: block; aspect-ratio: 2 / 3; object-fit: cover; }
+  .press figcaption { margin-top: 8px; font-size: 13.5px; }
+  .press .n { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .press b { display: block; font-weight: 600; }
+
+  /* ---- asks, gallery, script ---- */
+  .ask { margin-top: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .ask ol { margin: 8px 0 0; padding-left: 22px; }
+  .ask li { margin: 6px 0; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 14px; }
+  .gallery figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px; }
+  .gallery img { width: 100%; border-radius: 8px; display: block; }
+  .gallery figcaption { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+  .gallery figcaption b { color: var(--fg); font-weight: 600; }
+  .script-block { margin-top: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .script-block ol { margin: 8px 0 0; padding-left: 22px; font-family: var(--display); font-weight: 500; font-size: 19px; line-height: 1.4; }
+  .script-block li { margin: 8px 0; }
+  .script-block li small { display: block; font-family: var(--mono); font-weight: 400; font-size: 11.5px; color: var(--muted); }
+  button.copy { margin-top: 14px; font: 500 14px var(--body); padding: 9px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--lime); color: var(--lime-ink); cursor: pointer; }
+  button.copy:focus-visible { outline: 3px solid var(--wall); outline-offset: 2px; }
+  .ok { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-left: 10px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 13.5px; max-width: 70ch; }
+
+  @media (max-width: 820px) {
+    .beat { grid-template-columns: 1fr; gap: 16px; }
+    .notes { grid-template-columns: 1fr; gap: 2px 0; }
+    .notes dt { margin-top: 8px; }
+    .vo-line { font-size: 19px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Demo video · draft storyboard, revision 2</p>
+  <h1>Cat Breads: an SDF experiment that became Lane's playground, voiced through the Comfy Cloud MCP</h1>
+  <p class="lede">Eight beats, about 55 seconds. It starts as an experiment in modelling with signed distance fields, finds its subject in Lane's index cards, grows into a lounge for her iPad, and goes silent until one Claude Code session with the Comfy Cloud MCP gives every cat a voice and the room its music. Narrated in your cloned voice, first person.</p>
+  <div class="chips">
+    <span class="chip lime">≈ 55 s · 1920×1080 · 30 fps</span>
+    <span class="chip">Comfy Demo Studio (Remotion), dark canvas theme, Nodey hosts</span>
+    <span class="chip">Narration: your Chatterbox clone on Comfy Cloud, one mood per line</span>
+    <span class="chip">Lane: her cards and first name only</span>
+  </div>
+
+  <h2>Timeline</h2>
+  <div class="timeline"><div class="tl-inner">
+    <div class="ruler">
+      <span style="left:0%">0:00</span><span style="left:8.8%">0:05</span><span style="left:17.6%">0:10</span><span style="left:26.4%">0:15</span><span style="left:35.1%">0:20</span><span style="left:43.9%">0:25</span><span style="left:52.7%">0:30</span><span style="left:61.5%">0:35</span><span style="left:70.3%">0:40</span><span style="left:79.1%">0:45</span><span style="left:87.9%">0:50</span><span style="left:96.7%">0:55</span>
+    </div>
+    <div class="lane"><span class="lane-label">Picture</span><div class="lane-track">
+      <div class="seg pic card" style="left:0%;width:5.3%">Intro</div>
+      <div class="seg pic still" style="left:5.5%;width:10.1%">1 Experiment</div>
+      <div class="seg pic still" style="left:15.8%;width:13%">2 Her cards</div>
+      <div class="seg pic still" style="left:29%;width:13%">3 Build</div>
+      <div class="seg pic" style="left:42.2%;width:10.2%">4 Lounge</div>
+      <div class="seg pic term" style="left:52.6%;width:21%">5 MCP session</div>
+      <div class="seg pic" style="left:73.8%;width:17.4%">6 Voices</div>
+      <div class="seg pic card" style="left:91.4%;width:8.6%">Outro</div>
+    </div></div>
+    <div class="lane"><span class="lane-label">Narration</span><div class="lane-track">
+      <div class="seg vo" style="left:6.2%;width:8.1%">1</div>
+      <div class="seg vo" style="left:16.5%;width:10.9%">2</div>
+      <div class="seg vo" style="left:29.7%;width:10.9%">3</div>
+      <div class="seg vo" style="left:42.9%;width:8.1%">4</div>
+      <div class="seg vo" style="left:53.3%;width:19%">5</div>
+      <div class="seg vo" style="left:74.5%;width:4%">6</div>
+      <div class="seg vo" style="left:92.1%;width:6.7%">7</div>
+    </div></div>
+    <div class="lane"><span class="lane-label">Music (ACE-Step loop)</span><div class="lane-track">
+      <div class="seg music" style="left:67.7%;width:32.3%">fades in as the ACE-Step call completes · ducked under narration</div>
+    </div></div>
+    <div class="lane"><span class="lane-label">Cat voices (cues)</span><div class="lane-track">
+      <div class="cue bell" style="left:59.8%" title="Lucky Cat bell when the first result lands"></div>
+      <div class="cue" style="left:79.4%" title="Lucky Cat"></div><div class="cue" style="left:81.9%" title="Bumble Cat"></div><div class="cue" style="left:84.4%" title="Explorer"></div><div class="cue" style="left:86.8%" title="Devil Cat"></div><div class="cue" style="left:88.6%" title="Unimeow"></div><div class="cue" style="left:90%" title="Mascot"></div>
+    </div></div>
+    <div class="tl-legend"><span><i style="background:var(--lime)"></i>narration line</span><span><i style="background:#7bc6a0"></i>music bed</span><span><i style="background:var(--wall);border-radius:50%"></i>a cat's voice</span><span><i style="background:#e0b43a;border-radius:50%"></i>bell preview inside the MCP beat</span><span>Beat lengths follow the measured takes (0.5 s lead, 0.8 s tail); these are estimates at 2.6 words per second.</span></div>
+  </div></div>
+
+  <h2>Beats</h2>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:00 – 0:03</span>
+      <div class="title-card"><div class="big">Cat Breads</div><div class="sub">An SDF experiment that became Lane's playground. Voiced through the Comfy Cloud MCP.</div><div class="cta">Comfy Cloud MCP</div></div>
+      <div class="nodey">Nodey waves</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 0 · intro · 3 s · title card</p>
+      <h3>Title</h3>
+      <div class="vo-line silent">No narration. No music yet: the video opens quiet on purpose.</div>
+      <dl class="notes">
+        <dt>Picture</dt><dd>Studio intro card on the ink canvas with the lime dot grid: title "Cat Breads", subtitle as shown, Nodey waves in.</dd>
+        <dt>Sound</dt><dd>Silence.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:03 – 0:09</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">renders/gallery.png</span><span class="surf">still</span></div><img src="img/sdf_gallery.jpg" alt="Four signed-distance-field studies rendered in Blender: a coral pod with tendrils, a gyroid egg, linked rings and a lattice ball" style="--pos: center 55%"></div>
+      <div class="cap">This started as an experiment: modelling with signed distance fields in Blender.</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 1 · the experiment · ≈ 6 s · still, Ken Burns</p>
+      <h3>The experiment</h3>
+      <div class="vo-line">"This started as an experiment: modelling with signed distance fields in Blender."</div>
+      <p class="vo-meta"><span class="mood">natural</span><span>12 words · ≈ 4.6 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>The SDF studies from <code>sdf.py</code> and <code>shapes.py</code>: the pod, the gyroid egg, the linked rings, the lattice ball. A slow drift from left to right across the row.</dd>
+        <dt>Sound</dt><dd>Narration only.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:09 – 0:16</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">cards_photo.jpg</span><span class="surf">still</span></div><img src="img/cards_photo.jpg" alt="Lane's twenty-three hand-drawn Cat Breads index cards laid out on a wooden table" style="--pos: center 18%"></div>
+      <div class="cap">Then my daughter Lane drew twenty-three cats on index cards…</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 2 · her cards · ≈ 7.5 s · still, Ken Burns</p>
+      <h3>Her cards</h3>
+      <div class="vo-line">"Then my daughter Lane drew twenty-three cats on index cards, and the experiment had its subject."</div>
+      <p class="vo-meta"><span class="mood">amused</span><span>16 words · ≈ 6.2 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>A landscape crop of the photo (the top rows, about 2.1:1), drifting slowly across the drawings so the marker lettering reads.</dd>
+        <dt>Sound</dt><dd>Narration only.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:16 – 0:24</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">renders/cards/cat_breads_cards.jpg</span><span class="surf">still</span></div><img src="img/cards_render.jpg" alt="The same card layout rendered in Blender: each drawing as a 3D clay cat on a white card" style="--pos: center 14%"></div>
+      <div class="cap">With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off.</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 3 · the build · ≈ 7.5 s · still, match cut</p>
+      <h3>The build</h3>
+      <div class="vo-line">"With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off."</div>
+      <p class="vo-meta"><span class="mood">natural</span><span>16 words · ≈ 6.2 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>The Blender card renders, cropped to exactly the same rows as the photo, so the cut from beat 2 lands as a match: her drawings turn into the renders in place.</dd>
+        <dt>Sound</dt><dd>Narration only.</dd>
+        <dt>Check</dt><dd>The card says "the show of! AND NO FARTING". The line says "the Show Off"; say if you want the footnote in.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:24 – 0:30</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">localhost:8765 · ?demo=lounge</span><span class="surf">localhost</span></div><img src="img/lounge_capture.jpg" alt="The Three.js lounge: a terracotta wall with a For Lane sign over the framed cards, cats on a teal couch" style="--pos: center 0%"></div>
+      <div class="cap">It grew into a playground for her iPad. Finished, and completely silent.</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 4 · the lounge · ≈ 6 s · video</p>
+      <h3>The lounge</h3>
+      <div class="vo-line">"It grew into a playground for her iPad. Finished, and completely silent."</div>
+      <p class="vo-meta"><span class="mood">quiet</span><span>12 words · ≈ 4.6 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>A slow dolly-in on the finished room, the "For Lane" sign and the framed cards in frame, cats idling and blinking. Captured from the real page with a scripted demo mode; the mute button is hidden.</dd>
+        <dt>Sound</dt><dd>Narration only, in the quiet voice. The room stays silent so the next beat can bring the sound in.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:30 – 0:42</span>
+      <div class="term"><div class="bar"><i></i><i></i><i></i><span class="url">claude · ~/Code/blndr</span><span class="surf">Claude Code</span></div>
+<pre><span class="u">&gt; The lounge needs sound. Give every cat a 1.5 s voice that fits its card, and a loop of lounge music, through Comfy Cloud.</span>
+
+<span class="t">⏺ comfyui-cloud · partner_generate</span>  type "audio" · model "elevenlabs/sound-generation"
+    prompt "a small brass bell jingling twice, cute, close" · duration 1.5
+  <span class="r">⎿ submitted → completed · saved to the asset library · /api/s/…</span>
+<span class="t">⏺ comfyui-cloud · partner_generate</span>  prompt "a fat bumblebee buzzing past, cartoonish" · duration 1.5
+<span class="t">⏺ comfyui-cloud · partner_generate</span>  prompt "a bubbly underwater echo, playful" · duration 1.5
+  <span class="d">… 20 more voices</span>
+<span class="t">⏺ comfyui-cloud · run_template</span>  audio_ace_step_1_5_checkpoint · "warm lo-fi lounge, soft keys, brushed drums" · 60 s
+  <span class="r">⎿ completed · ambient.flac</span>
+⏺ bash  ffmpeg … silenceremove, loudnorm → web/audio/&lt;Name&gt;.mp3 ×23, ambient.mp3 <span class="cur"></span></pre></div>
+      <div class="callout" style="left:7%; top:30%"><span>Comfy Cloud MCP</span></div>
+      <div class="cap">So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs…</div>
+      <div class="nodey">Nodey points at the callout</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 5 · the MCP session · ≈ 12 s · terminal replay</p>
+      <h3>One session, all the sound</h3>
+      <div class="vo-line">"So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and ACE-Step for the music, without leaving the editor."</div>
+      <p class="vo-meta"><span class="mood">calm</span><span>28 words · ≈ 10.8 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>A Claude Code session replayed line by line, timed to the narration: your prompt, three real <code>partner_generate</code> calls with their results arriving, the ACE-Step <code>run_template</code>, then the ffmpeg trim. Lime accent on the MCP lines; a callout and Nodey mark the first one. Rendered as a scene in the studio (crisp text, deterministic timing), not a screen recording; the lines quote a real call I will run on camera during the build.</dd>
+        <dt>Sound</dt><dd>Narration. The Lucky Cat's bell plays once when its result line lands. The music fades in the moment the ACE-Step line completes and stays under everything from here.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:42 – 0:52</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url">localhost:8765 · ?demo=voices</span><span class="surf">localhost</span></div><img src="img/lounge_capture.jpg" alt="The lounge again, framed closer on the couch where the cats sit" style="--pos: center 62%"></div>
+      <div class="cap">Tap a cat, and it answers.</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 6 · the cats answer · 10 s · video</p>
+      <h3>The cats answer</h3>
+      <div class="vo-line">"Tap a cat, and it answers."</div>
+      <p class="vo-meta"><span class="mood">excited</span><span>6 words · ≈ 2.3 s spoken, then the cats take over</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>Six cats pressed in turn about 1.4 s apart; each hops or wiggles and the whole room turns to look at it. The press order is below.</dd>
+        <dt>Sound</dt><dd>Each cat's real voice from <code>web/audio</code> at the exact press time (the capture logs every press against a marker frame). Music ducked.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="beat">
+    <div class="frame"><span class="ts">0:52 – 0:57</span>
+      <div class="title-card"><div class="big">Built with Claude Code.<br>Voiced through the Comfy Cloud MCP.</div><div class="sub">cloud.comfy.org · for Lane</div><div class="cta">Try the Comfy Cloud MCP</div></div>
+      <div class="nodey">Nodey celebrates</div>
+    </div>
+    <div class="script">
+      <p class="eyebrow">Beat 7 · outro · 5 s · title card</p>
+      <h3>Outro</h3>
+      <div class="vo-line">"Even this narration is my voice, cloned through the MCP."</div>
+      <p class="vo-meta"><span class="mood">confident</span><span>10 words · ≈ 3.8 s spoken</span></p>
+      <dl class="notes">
+        <dt>Picture</dt><dd>Studio outro card with the headline, the URL, a small "for Lane", Nodey celebrating.</dd>
+        <dt>Sound</dt><dd>Narration, then the music comes up to close.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <h2>Press order in beat 6</h2>
+  <p class="lede">The three named in the script come first so their sounds land on familiar names; the other three round out the beat.</p>
+  <div class="press">
+    <figure><img src="img/09_LuckyCat.jpg" alt="The Lucky Cat card render"><figcaption><span class="n">1 · 0:45.2</span><b>Lucky Cat</b>bell jingle</figcaption></figure>
+    <figure><img src="img/21_BumbleCat.jpg" alt="The Bumble Cat card render"><figcaption><span class="n">2 · 0:46.6</span><b>Bumble Cat</b>bee buzz</figcaption></figure>
+    <figure><img src="img/10_Explorer.jpg" alt="The Explorer card render"><figcaption><span class="n">3 · 0:48.0</span><b>Explorer</b>bubbly echo</figcaption></figure>
+    <figure><img src="img/19_DevilCat.jpg" alt="The Devil Cat card render"><figcaption><span class="n">4 · 0:49.4</span><b>Devil Cat</b>its voice from web/audio</figcaption></figure>
+    <figure><img src="img/20_Unimeow.jpg" alt="The Unimeow card render"><figcaption><span class="n">5 · 0:50.4</span><b>Unimeow</b>its voice from web/audio</figcaption></figure>
+    <figure><img src="img/01_Mascot.jpg" alt="The Mascot card render"><figcaption><span class="n">6 · 0:51.2</span><b>Mascot</b>its voice from web/audio</figcaption></figure>
+  </div>
+
+  <h2>Your voice</h2>
+  <div class="ask">
+    <p>Narration comes from your Chatterbox clone on Comfy Cloud (the <code>miles-voiceover</code> skill): each line is generated three times against the mood reference shown on its beat, checked with Whisper for wrong words and breathy tails, then the best take is trimmed and levelled. GPU time only, no partner credits, nothing stored with a voice vendor. I will play you line 1 before generating the rest.</p>
+  </div>
+
+  <h2>What I need from you</h2>
+  <div class="ask">
+    <ol>
+      <li><b>The seven lines and their moods.</b> Edit any wording you like; the beats stretch to fit. 100 spoken words now.</li>
+      <li><b>Length.</b> With the experiment beat added the cut runs about 55–57 s against the 50 s target. To get back to 50, the cleanest cut is merging beats 1 and 2 into one split frame (shapes on the left, cards on the right) under one line; say if you want that, or if 55 s is fine.</li>
+      <li><b>Lane on screen.</b> Her first name appears in line 2, on the sign in beats 4 and 6, and as "for Lane" on the outro. Say if any of those should go.</li>
+    </ol>
+  </div>
+
+  <h2>Reference images</h2>
+  <div class="gallery">
+    <figure><img src="img/sdf_gallery.jpg" alt="The four SDF studies"><figcaption><b>The SDF studies</b> · <code>renders/gallery.png</code>: pod, gyroid egg, linked rings, lattice ball, from <code>shapes.py</code>. Beat 1.</figcaption></figure>
+    <figure><img src="img/cards_photo.jpg" alt="Photo of the original hand-drawn cards"><figcaption><b>Lane's cards</b> · <code>web/cards_photo.jpg</code>, also the framed picture in the lounge. Beat 2.</figcaption></figure>
+    <figure><img src="img/cards_render.jpg" alt="Rendered cards"><figcaption><b>The rendered set</b> · <code>renders/cards/cat_breads_cards.jpg</code>, same layout, spelling kept. Beat 3.</figcaption></figure>
+    <figure><img src="img/lounge_capture.jpg" alt="Lounge capture"><figcaption><b>The lounge as the capture browser sees it</b> · a 1600×1000 Playwright frame from the performance probe (full Chromium with Metal: ~120 fps). Beats 4 and 6.</figcaption></figure>
+    <figure><img src="img/hangout.jpg" alt="Blender group render of all cats"><figcaption><b>The hangout render</b> · <code>renders/cats/hangout.png</code>, the Blender group shot. Not in the cut; an alternative for beat 3 if you prefer cats to cards.</figcaption></figure>
+    <figure><img src="img/nodey_sheet.png" alt="Nodey mascot pose sheet"><figcaption><b>Nodey</b> · the studio's mascot poses: waves on the intro, points in beat 5, celebrates on the outro.</figcaption></figure>
+  </div>
+
+  <h2>The script in one place</h2>
+  <div class="script-block">
+    <ol id="script">
+      <li>This started as an experiment: modelling with signed distance fields in Blender.<small>beat 1 · natural · 12 words</small></li>
+      <li>Then my daughter Lane drew twenty-three cats on index cards, and the experiment had its subject.<small>beat 2 · amused · 16 words</small></li>
+      <li>With Claude Code, each card became a cat: the Lucky Cat, the Bumble Cat, the Show Off.<small>beat 3 · natural · 16 words</small></li>
+      <li>It grew into a playground for her iPad. Finished, and completely silent.<small>beat 4 · quiet · 12 words</small></li>
+      <li>So I asked for sound. With the Comfy Cloud MCP, Claude called ElevenLabs for a voice per cat and ACE-Step for the music, without leaving the editor.<small>beat 5 · calm · 28 words</small></li>
+      <li>Tap a cat, and it answers.<small>beat 6 · excited · 6 words</small></li>
+      <li>Even this narration is my voice, cloned through the MCP.<small>outro · confident · 10 words</small></li>
+    </ol>
+    <button class="copy" id="copy" type="button">Copy the seven lines</button><span class="ok" id="ok" aria-live="polite"></span>
+  </div>
+
+  <footer>Production notes live in the plan: the lounge gets a scripted demo mode with a marker frame for sync, the studio gets launch options for a GPU browser, timed audio cues, a trim, music start and ducking, and the terminal scene. Comfy Cloud spend stays under 10 credits; the narration is GPU time only.</footer>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy'), ok = document.getElementById('ok');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var lines = Array.prototype.map.call(document.querySelectorAll('#script > li'), function (li, i) {
+        return (i + 1) + '. ' + li.firstChild.textContent.trim();
+      }).join('\n');
+      function done(msg) { ok.textContent = msg; setTimeout(function () { ok.textContent = ''; }, 2500); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(lines).then(function () { done('Copied'); }, function () { select(); });
+      } else { select(); }
+      function select() {
+        var range = document.createRange(); range.selectNodeContents(document.getElementById('script'));
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        done('Selected; press copy');
+      }
+    });
+  })();
+</script>
+
+</body></html>
